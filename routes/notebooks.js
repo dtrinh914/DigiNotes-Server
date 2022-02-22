@@ -6,7 +6,7 @@ const Notebook = mongoose.model('Notebook');
 
 // get all of a users notebooks
 router.get('/:userId', (req, res) => {
-  Notebook.find({userId:req.params.userId}).select('-__v')
+  Notebook.find({userId:req.params.userId}).select('-__v').populate('notes')
     .then((notebooks) => {
       res.send(notebooks);
     })

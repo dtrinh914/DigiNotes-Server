@@ -24,3 +24,4 @@ mongoose.connection
 });
 
 require('./models/notebook');
+require('./models/note');

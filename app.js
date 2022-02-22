@@ -1,6 +1,5 @@
 const express = require('express');
-const createError = require('http-errors');
-var db = require('./db');
+const db = require('./db');
 
 const app = express();
 
@@ -10,8 +9,9 @@ app.use(express.urlencoded({ extended: false }));
 app.set('trust proxy', true);
 app.use('/', require('./routes/index'));
 
-app.use( (req, res, next) => {
-  next(createError(404));
+app.get('*', (req, res) => {
+  res.statusCode = 404;
+  res.send("Resource does not exist");
 });
 
 const PORT = process.env.PORT || 8080;
